@@ -11,23 +11,8 @@ import { IconButton } from './IconButton'
 import { Image } from './Image'
 import { Input } from './Input'
 import { Link } from './Link'
+import { Page } from './Page'
 import { Text } from './Text'
 import { TreeItem } from './TreeItem'
 
-export {
-	Badge,
-	Box,
-	Button,
-	Card,
-	Code,
-	Container,
-	Divider,
-	Flex,
-	Grid,
-	IconButton,
-	Image,
-	Input,
-	Link,
-	Text,
-	TreeItem,
-}
+export { Badge, Box, Button, Card, Code, Container, Divider, Flex, Grid, IconButton, Image, Input, Link, Page, Text, TreeItem }

@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { styled } from '../stitches.config'
-import { Box, Card, Image, Text } from '../components'
+import { Page, Box, Card, Image, Text } from '../components'
 
-const Main = styled.main({
+const Main = styled.div({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -20,9 +20,11 @@ const Main = styled.main({
 
 const Home = () => {
   return (
-    <Main>
-      <Text as="h1">Work in Progress...</Text>
-    </Main>
+    <Page title="Home">
+      <Main>
+        <Text as="h1">Work in Progress...</Text>
+      </Main>
+    </Page>
   )
 }
 
