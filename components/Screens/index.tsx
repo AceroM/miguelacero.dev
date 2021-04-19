@@ -40,6 +40,7 @@ const Index = () => {
       component = <></>
   }
   const textureRaw = useLoader(THREE.TextureLoader, 'images/bigsur.png')
+  const isMobile = window.innerWidth < 1024
 
   return (
     <three.group rotation-x={0} position={[0, 2.95, 0]}>

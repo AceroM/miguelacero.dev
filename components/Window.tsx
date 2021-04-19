@@ -5,13 +5,24 @@ import useStore from '../store'
 const Container = styled('div', {
   ...tw`bg-white overflow-hidden rounded-2xl p-0 shadow-md`,
   height: '60vh',
-  width: '70vw',
-  '@bp1': {
-    width: '75w'
+  '@initial': {
+    width: '75vw',
   },
   '@bp2': {
-    width: '10w'
-  }
+    width: '75vw'
+  },
+  '@bp3': {
+    width: '59vw'
+  },
+  '@bp4': {
+    width: '50vw'
+  },
+  '@bp5': {
+    width: '40vw'
+  },
+  '@bp6': {
+    width: '35vw'
+  },
 })
 
 const TitleBar = styled('div', {

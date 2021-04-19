@@ -51,10 +51,8 @@ const NavLink = ({ href, name }) => {
       friction: 10,
     },
     opacity: 1,
-    transform: 'translate3d(0,0,0)',
     from: {
       opacity: 0,
-      transform: 'translate3d(16px,0,0)',
     }
   })
 
