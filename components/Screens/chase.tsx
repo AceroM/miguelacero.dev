@@ -1,10 +1,8 @@
-import Window from '../Window'
-
 const Chase = () => {
   return (
-    <Window title="Chase">
+    <div title="Chase">
       In development...
-    </Window>
+    </div>
   )
 }
 

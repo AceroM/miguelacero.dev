@@ -1,18 +1,32 @@
 import {useSpring} from '@react-spring/core'
 import {a as three} from '@react-spring/three'
 import {useGLTF} from '@react-three/drei'
-import {useFrame, useThree} from '@react-three/fiber'
+import {useFrame, useLoader} from '@react-three/fiber'
 import {useEffect, useRef, useState} from 'react'
 import * as THREE from 'three'
 import useStore from '../../store'
-import Screens from '../Screens'
+import Screen from '../Screens'
 import Sticker from './Sticker'
 
 const vec = new THREE.Vector3()
 
-function Laptop() {
+const BackButton = () => {
+  const {openLaptop, closeLaptop} = useStore(state => state)
+  if (!openLaptop) return null
+  const close = e => {
+    e.stopPropogation
+    closeLaptop()
+  }
+  return (
+    <div>
+
+    </div>
+  )
+}
+
+const Laptop = () => {
   const {nodes, materials} = useGLTF('/models/mac-draco.glb')
-  const {laptopOpen, closeLaptop, stickers} = useStore(state => state)
+  const {laptopOpen, stickers, openStickers, closeLaptop} = useStore(state => state)
   const {open} = useSpring({open: Number(laptopOpen)})
   const [hovered, setHovered] = useState(false)
   const hinge = open.to([0, 1], [1.575, -0.425])
@@ -39,6 +53,10 @@ function Laptop() {
   const stickerList = stickers.map(s => (
     <Sticker key={s.texture} sticker={s}/>
   ))
+  const screenList = openStickers.map(s => (
+    <Screen key={s.texture} sticker={s}/>
+  ))
+  const textureRaw = useLoader(THREE.TextureLoader, 'images/bigsur.png')
 
   return (
     <group
@@ -57,7 +75,8 @@ function Laptop() {
           closeLaptop()
         }
       }}
-      dispose={null}>
+      dispose={null}
+    >
       <ambientLight intensity={0.3}/>
       <three.group rotation-x={hinge} position={[0, -0.04, 0.41]}>
         <ambientLight/>
@@ -69,7 +88,13 @@ function Laptop() {
           <mesh material={materials['matte.001']} geometry={nodes['Cube008_1'].geometry}/>
           <mesh material={materials['screen.001']} geometry={nodes['Cube008_2'].geometry}/>
         </group>
-        <Screens/>
+        <three.group rotation-x={0} position={[0, 2.95, 0]}>
+          <three.mesh>
+            <planeBufferGeometry args={[8.25, 5.17, 2]}/>
+            <meshLambertMaterial map={textureRaw}/>
+            {screenList}
+          </three.mesh>
+        </three.group>
       </three.group>
       <mesh material={materials.keys} geometry={nodes.keyboard.geometry} position={[1.79, 0, 3.45]}/>
       <group position={[0, -0.1, 3.39]}>

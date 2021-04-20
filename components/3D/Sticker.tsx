@@ -7,6 +7,17 @@ import tw from "twin.macro"
 import {styled} from "../../stitches.config"
 import useStore from "../../store"
 
+export type WindowInfo = {
+  // position on screen
+  x: number;
+  y: number;
+  // boundaries
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+}
+
 export type StickerType = {
   name: string;
   type: StickerOpen;
@@ -18,6 +29,7 @@ export type StickerType = {
   rotation: number;
   x: number;
   y: number;
+  window: WindowInfo;
 }
 
 // Describes what happens when you open a sticker
@@ -70,7 +82,7 @@ interface StickerProps {
 const Sticker = ({sticker}: StickerProps) => {
   const {name, type, href, texture, size, x, y, rotation} = sticker
   const textureRaw = useLoader(THREE.TextureLoader, texture)
-  const {laptopOpen, openLaptop, setSticker, selectedSticker} = useStore(state => state)
+  const {laptopOpen, openLaptop, setSticker, selectedSticker, addStickerToScreen} = useStore(state => state)
   const [hovered, setHovered] = useState(false)
 
   useEffect(() => void (document.body.style.cursor = hovered ? 'pointer' : 'auto'), [hovered])
@@ -91,6 +103,7 @@ const Sticker = ({sticker}: StickerProps) => {
         }}
         onClick={e => {
           e.stopPropagation()
+          addStickerToScreen(sticker)
           switch (type) {
             case StickerOpen.LaptopOpen:
               openLaptop()

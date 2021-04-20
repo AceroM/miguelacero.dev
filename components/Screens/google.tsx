@@ -1,10 +1,8 @@
-import Window from '../Window'
-
 const Google = () => {
   return (
-    <Window title="Google (2020-2021)">
+    <div title="Google (2020-2021)">
       Page in development...
-    </Window>
+    </div>
   )
 }
 

@@ -1,10 +1,8 @@
-import Window from '../Window'
-
 const Animoto = () => {
   return (
-    <Window title="animoto">
+    <div title="animoto">
       In development...
-    </Window>
+    </div>
   )
 }
 

@@ -4,6 +4,7 @@ I finally made a portfolio website
 This Project was made using this template: https://github.com/ben-rogerson/twin.examples/tree/master/next-stitches-typescript
 
 ## TODO
+* create drag and drop feature (only maximize and close window, no custom window size)
 * make non hoverable stickers
 * Create middle glow
 * instead of apple logo, an M logo

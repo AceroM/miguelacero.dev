@@ -1,10 +1,8 @@
-import Window from '../Window'
-
 const Skills = () => {
   return (
-    <Window title="skills">
+    <div>
       In development...
-    </Window>
+    </div>
   )
 }
 

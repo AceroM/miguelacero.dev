@@ -1,10 +1,8 @@
-import Window from '../Window'
-
 const HackNYU = () => {
   return (
-    <Window title="HackNYU">
+    <div title="HackNYU">
       In development...
-    </Window>
+    </div>
   )
 }
 
