@@ -10,6 +10,7 @@ import {styled} from '../../stitches.config'
 import useStore from '../../store'
 import Animoto from './animoto'
 import Chase from './chase'
+import FightingGames from './fightinggames'
 import Google from './google'
 import HackNYU from './hacknyu'
 import Hunter from './hunter'
@@ -68,10 +69,10 @@ const Center = styled('div', {
 })
 
 const DraggableWindow = ({laptopOpen, children, sticker}) => {
-  const {name} = sticker
+  const {name, texture} = sticker
   if (!laptopOpen) return null
 
-  const {removeStickerFromScreen, getWindowPos, setWindowPos} = useStore(state => state)
+  const {getThemeFromSticker, removeStickerFromScreen, getWindowPos, setWindowPos} = useStore(state => state)
   const pos = getWindowPos(sticker)
   const meshRef = useRef(null)
   const windowRef = useRef(null)
@@ -107,7 +108,7 @@ const DraggableWindow = ({laptopOpen, children, sticker}) => {
   return (
     <three.mesh ref={meshRef} position={pos}>
       <Html ref={windowRef} distanceFactor={4.3} transform>
-        <Container>
+        <Container style={getThemeFromSticker(texture)}>
           <TitleBar {...bind()}>
             <Controls>
               <Button onClick={close} color="red"/>
@@ -153,6 +154,9 @@ const Index = ({sticker}) => {
       break
     case 'stickers/animoto.png':
       component = <Animoto/>
+      break
+    case 'stickers/streetfighter.png':
+      component = <FightingGames/>
       break
     default:
       component = <></>

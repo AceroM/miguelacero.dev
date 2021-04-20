@@ -4,16 +4,9 @@ import {a as web} from '@react-spring/web'
 import {Environment} from '@react-three/drei'
 import {Canvas, useThree} from '@react-three/fiber'
 import {Suspense} from 'react'
-import tw from 'twin.macro'
 import Laptop from '../components/3D/Laptop'
 import Header from '../components/Header'
-import {styled} from '../stitches.config'
 import useStore from '../store'
-
-const Text = styled(web.h2, {
-  ...tw`absolute bg-black`,
-  transform: `translate3d(50%, 0, 0)`
-})
 
 const Model = ({open}) => {
   // const {viewport} = useThree()
@@ -32,8 +25,6 @@ const Model = ({open}) => {
         </group>
         <Environment preset="city"/>
       </Suspense>
-      {/*<ContactShadows rotation-x={Math.PI / 2} position={[0, -2.3, 0]} opacity={0.4} width={30} height={20} blur={2}*/}
-      {/*                far={2.5}/>*/}
     </>
   )
 }

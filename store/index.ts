@@ -16,7 +16,7 @@ type Store = {
   getWindowPos: (sticker: StickerType) => [number, number, number];
   setWindowPos: (sticker: StickerType, x: number, y: number) => void;
   selectedSticker: StickerType | null; // Used to change the background color
-  getThemeFromSticker: () => themeStyleType;
+  getThemeFromSticker: (texture: string) => themeStyleType;
   setSticker: (sticker: StickerType) => void;
   stickers: StickerType[];
 }
@@ -28,10 +28,12 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
     closeLaptop: () => set(state => ({laptopOpen: false})),
     openStickers: [],
     addStickerToScreen: (sticker) => {
-      let newStickers = get().openStickers
-      const foundIdx = newStickers.findIndex(s => s.texture === sticker.texture)
-      if (foundIdx === -1) {
-        set({openStickers: [...get().openStickers, sticker]})
+      if (sticker.type === StickerOpen.LaptopOpen) {
+        let newStickers = get().openStickers
+        const foundIdx = newStickers.findIndex(s => s.texture === sticker.texture)
+        if (foundIdx === -1) {
+          set({openStickers: [...get().openStickers, sticker]})
+        }
       }
     },
     removeStickerFromScreen: (sticker) => {
@@ -60,15 +62,19 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       }
     },
     selectedSticker: null,
-    getThemeFromSticker: () => {
-      const {textColor, bgColor} = get().selectedSticker
+    getThemeFromSticker: (texture: string) => {
       const theme = {
         color: '#423f42',
         backgroundColor: '#f0f0f0',
       }
-      if (textColor && bgColor) {
-        theme.color = textColor
-        theme.backgroundColor = bgColor
+      let temp = get().openStickers
+      const foundIdx = temp.findIndex(s => s.texture === texture)
+      if (foundIdx > -1) {
+        const {textColor, bgColor} = temp[foundIdx]
+        if (textColor && bgColor) {
+          theme.color = textColor
+          theme.backgroundColor = bgColor
+        }
       }
       return theme
     },
@@ -112,7 +118,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         },
       },
       {
-        name: 'College',
+        name: 'Hunter College',
         type: StickerOpen.LaptopOpen,
         href: '',
         bgColor: '#5f259f',
@@ -249,6 +255,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         type: StickerOpen.LaptopOpen,
         texture: 'stickers/streetfighter.png',
         bgColor: '#ff8200',
+        textColor: '#000',
         size: [633*0.005,236*0.005],
         rotation: 0.2,
         x: 0.35,

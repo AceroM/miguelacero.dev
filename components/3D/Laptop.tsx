@@ -1,26 +1,70 @@
 import {useSpring} from '@react-spring/core'
 import {a as three} from '@react-spring/three'
-import {useGLTF} from '@react-three/drei'
+import {Html, useGLTF} from '@react-three/drei'
 import {useFrame, useLoader} from '@react-three/fiber'
 import {useEffect, useRef, useState} from 'react'
 import * as THREE from 'three'
+import tw from 'twin.macro'
+import {styled} from '../../stitches.config'
 import useStore from '../../store'
 import Screen from '../Screens'
 import Sticker from './Sticker'
 
 const vec = new THREE.Vector3()
 
+const getLaptopPos = (cur: Number, t, status: boolean, type: string, value: string) => {
+  // x: Math.cos(t / 2) / 12 + 0.25,gg
+  const positions = {
+    1: {
+      rotation: {
+        x: Math.cos(t / 2) / 12 + 0.25,
+        y: 0,
+        z: 0,
+      },
+      position: {
+        x: 0,
+        y: -1.7,
+        z: 7,
+      },
+    },
+    0: {
+      rotation: {
+        x: 0.9,
+        y: 0.1,
+        z: 0,
+      },
+      position: {
+        x: -0.6,
+        y: 4,
+        z: 9,
+      },
+    }
+  }
+
+  return THREE.MathUtils.lerp(cur, positions[Number(status)][type][value], .1)
+}
+
 const BackButton = () => {
-  const {openLaptop, closeLaptop} = useStore(state => state)
-  if (!openLaptop) return null
+  const {laptopOpen, closeLaptop} = useStore(state => state)
+  if (!laptopOpen) return null
   const close = e => {
-    e.stopPropogation
+    e.stopPropagation()
     closeLaptop()
   }
+  const Container = styled('div', {
+    ...tw`cursor-pointer bg-red-500 rounded-lg font-bold text-white text-center px-4 py-3`,
+    ...tw`transition duration-300 ease-in-out hover:bg-red-600`,
+    border: '5px solid black',
+    width: 300
+  })
   return (
-    <div>
-
-    </div>
+    <mesh position={[-1.25,2.4,0]}>
+      <Html>
+        <Container onClick={close}>
+          CLOSE LAPTOP
+        </Container>
+      </Html>
+    </mesh>
   )
 }
 
@@ -69,12 +113,6 @@ const Laptop = () => {
         e.stopPropagation()
         setHovered(false)
       }}
-      onClick={e => {
-        e.stopPropagation()
-        if (laptopOpen) {
-          closeLaptop()
-        }
-      }}
       dispose={null}
     >
       <ambientLight intensity={0.3}/>
@@ -92,6 +130,7 @@ const Laptop = () => {
           <three.mesh>
             <planeBufferGeometry args={[8.25, 5.17, 2]}/>
             <meshLambertMaterial map={textureRaw}/>
+            <BackButton/>
             {screenList}
           </three.mesh>
         </three.group>
@@ -107,35 +146,3 @@ const Laptop = () => {
 }
 
 export default Laptop
-
-const getLaptopPos = (cur: Number, t, status: boolean, type: string, value: string) => {
-  // x: Math.cos(t / 2) / 12 + 0.25,gg
-  const positions = {
-    1: {
-      rotation: {
-        x: Math.cos(t / 2) / 12 + 0.25,
-        y: 0,
-        z: 0,
-      },
-      position: {
-        x: 0,
-        y: -1.7,
-        z: 7,
-      },
-    },
-    0: {
-      rotation: {
-        x: 0.9,
-        y: 0.1,
-        z: 0,
-      },
-      position: {
-        x: -0.6,
-        y: 4,
-        z: 9,
-      },
-    }
-  }
-
-  return THREE.MathUtils.lerp(cur, positions[Number(status)][type][value], .1)
-}
