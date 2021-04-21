@@ -7,7 +7,7 @@ import * as THREE from 'three'
 import tw from 'twin.macro'
 import {styled} from '../../stitches.config'
 import useStore from '../../store'
-import Screen from '../Screens'
+import Screen from '../screens'
 import Sticker from './Sticker'
 
 const vec = new THREE.Vector3()
