@@ -1,5 +1,12 @@
 import create, {GetState, SetState} from 'zustand'
 import {StickerOpen, StickerType} from '../components/3D/Sticker'
+import Hunter from '../pages/stickers/hunter.mdx'
+import Vim from '../pages/stickers/vim.mdx'
+import WorkExperience from '../pages/stickers/workexperience.mdx'
+import FightingGames from '../pages/stickers/fightinggames.mdx'
+import Skills from '../pages/stickers/skills.mdx'
+import Keyboards from '../pages/stickers/keyboards.mdx'
+import Hackathons from '../pages/stickers/hackathons.mdx'
 
 type themeStyleType = {
   color: string;
@@ -16,7 +23,7 @@ type Store = {
   getWindowPos: (sticker: StickerType) => [number, number, number];
   setWindowPos: (sticker: StickerType, x: number, y: number) => void;
   selectedSticker: StickerType | null; // Used to change the background color
-  getThemeFromSticker: (texture: string) => themeStyleType;
+  getThemeFromSticker: (texture?: string) => themeStyleType;
   setSticker: (sticker: StickerType) => void;
   stickers: StickerType[];
 }
@@ -62,18 +69,23 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       }
     },
     selectedSticker: null,
-    getThemeFromSticker: (texture: string) => {
+    getThemeFromSticker: (texture?: string) => {
       const theme = {
         color: '#423f42',
         backgroundColor: '#f0f0f0',
       }
       let temp = get().openStickers
-      const foundIdx = temp.findIndex(s => s.texture === texture)
-      if (foundIdx > -1) {
-        const {textColor, bgColor} = temp[foundIdx]
-        if (textColor && bgColor) {
-          theme.color = textColor
-          theme.backgroundColor = bgColor
+      if (!texture) {
+        theme.color = get().selectedSticker.textColor
+        theme.backgroundColor = get().selectedSticker.bgColor
+      } else {
+        const foundIdx = temp.findIndex(s => s.texture === texture)
+        if (foundIdx > -1) {
+          const {textColor, bgColor} = temp[foundIdx]
+          if (textColor && bgColor) {
+            theme.color = textColor
+            theme.backgroundColor = bgColor
+          }
         }
       }
       return theme
@@ -82,6 +94,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
     stickers: [
       {
         name: 'Vim',
+        component: Vim,
         type: StickerOpen.OpenLink,
         href: 'https://gist.github.com/AceroM/64dd2e89c3f5d834f6ee74c66551bace',
         texture: 'stickers/vim.png',
@@ -100,6 +113,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       },
       {
         name: 'Skills',
+        component: Skills,
         type: StickerOpen.LaptopOpen,
         bgColor: '#f9e034',
         textColor: '#000',
@@ -119,8 +133,8 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       },
       {
         name: 'Hunter College',
+        component: Hunter,
         type: StickerOpen.LaptopOpen,
-        href: '',
         bgColor: '#5f259f',
         textColor: '#fff',
         texture: 'stickers/hunter.png',
@@ -138,7 +152,8 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         },
       },
       {
-        name: 'Google',
+        name: 'Work Experience',
+        component: WorkExperience,
         type: StickerOpen.LaptopOpen,
         bgColor: '#4285F4',
         textColor: '#fff',
@@ -158,6 +173,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       },
       {
         name: 'Mechanical Keyboards',
+        component: Keyboards,
         type: StickerOpen.LaptopOpen,
         bgColor: '#fec8cd',
         textColor: '#a30000',
@@ -176,45 +192,8 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         },
       },
       {
-        name: 'Chase',
-        type: StickerOpen.LaptopOpen,
-        bgColor: '#0e68ac',
-        textColor: '#ffffff',
-        texture: 'stickers/chase.png',
-        size: [1.6, 1.6],
-        rotation: 0.15,
-        x: -1.9,
-        y: 1.13,
-        window: {
-          x: 0,
-          y: 0,
-          top: -100,
-          right: 100,
-          bottom: 100,
-          left: -100,
-        },
-      },
-      {
-        name: 'Animoto',
-        type: StickerOpen.LaptopOpen,
-        bgColor: '#e3edb1',
-        textColor: '#ffffff',
-        texture: 'stickers/animoto.png',
-        size: [1.5, 1.5],
-        rotation: -0.14,
-        x: -3.3,
-        y: 1,
-        window: {
-          x: 0,
-          y: 0,
-          top: -100,
-          right: 100,
-          bottom: 100,
-          left: -100,
-        },
-      },
-      {
         name: 'HackNYU',
+        component: Hackathons,
         type: StickerOpen.LaptopOpen,
         bgColor: '#fae2a5',
         textColor: '#000',
@@ -252,6 +231,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       },
       {
         name: 'Fighting Games',
+        component: FightingGames,
         type: StickerOpen.LaptopOpen,
         texture: 'stickers/streetfighter.png',
         bgColor: '#ff8200',

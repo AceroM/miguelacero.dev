@@ -1,7 +1,7 @@
 import {a as three} from "@react-spring/three"
 import {Html} from "@react-three/drei"
 import {useLoader} from "@react-three/fiber"
-import {useEffect, useState} from "react"
+import {ReactElement, useEffect, useState} from 'react'
 import * as THREE from 'three'
 import tw from "twin.macro"
 import {styled} from "../../stitches.config"
@@ -20,6 +20,7 @@ export type WindowInfo = {
 
 export type StickerType = {
   name: string;
+  component?: JSX.Element;
   type: StickerOpen;
   href?: string;
   bgColor?: string;
