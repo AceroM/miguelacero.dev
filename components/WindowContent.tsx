@@ -1,5 +1,5 @@
-import {styled} from '../stitches.config'
 import tw from 'twin.macro'
+import {styled} from '../stitches.config'
 import useStore from '../store'
 
 const Container = styled('div', {
@@ -11,9 +11,10 @@ const Container = styled('div', {
   }
 })
 
-const Window = ({scrollColor, height = 400, children}) => {
+const WindowContent = ({scrollColor, height = 400, children}) => {
   const {getThemeFromSticker} = useStore(state => state)
   const {backgroundColor, color} = getThemeFromSticker()
+
   return (
     <Container style={{scrollbarColor: scrollColor || `${backgroundColor} ${color}`, height}}>
       {children}
@@ -21,4 +22,4 @@ const Window = ({scrollColor, height = 400, children}) => {
   )
 }
 
-export default Window
+export default WindowContent

@@ -20,7 +20,6 @@ export type WindowInfo = {
 
 export type StickerType = {
   name: string;
-  component?: JSX.Element;
   type: StickerOpen;
   href?: string;
   bgColor?: string;

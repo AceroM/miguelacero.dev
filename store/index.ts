@@ -1,12 +1,5 @@
 import create, {GetState, SetState} from 'zustand'
 import {StickerOpen, StickerType} from '../components/3D/Sticker'
-import Hunter from '../pages/stickers/hunter.mdx'
-import Vim from '../pages/stickers/vim.mdx'
-import WorkExperience from '../pages/stickers/workexperience.mdx'
-import FightingGames from '../pages/stickers/fightinggames.mdx'
-import Skills from '../pages/stickers/skills.mdx'
-import Keyboards from '../pages/stickers/keyboards.mdx'
-import Hackathons from '../pages/stickers/hackathons.mdx'
 
 type themeStyleType = {
   color: string;
@@ -94,7 +87,6 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
     stickers: [
       {
         name: 'Vim',
-        component: Vim,
         type: StickerOpen.OpenLink,
         href: 'https://gist.github.com/AceroM/64dd2e89c3f5d834f6ee74c66551bace',
         texture: 'stickers/vim.png',
@@ -113,7 +105,6 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       },
       {
         name: 'Skills',
-        component: Skills,
         type: StickerOpen.LaptopOpen,
         bgColor: '#f9e034',
         textColor: '#000',
@@ -133,7 +124,6 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       },
       {
         name: 'Hunter College',
-        component: Hunter,
         type: StickerOpen.LaptopOpen,
         bgColor: '#5f259f',
         textColor: '#fff',
@@ -153,7 +143,6 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       },
       {
         name: 'Work Experience',
-        component: WorkExperience,
         type: StickerOpen.LaptopOpen,
         bgColor: '#4285F4',
         textColor: '#fff',
@@ -173,7 +162,6 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       },
       {
         name: 'Mechanical Keyboards',
-        component: Keyboards,
         type: StickerOpen.LaptopOpen,
         bgColor: '#fec8cd',
         textColor: '#a30000',
@@ -193,7 +181,6 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       },
       {
         name: 'HackNYU',
-        component: Hackathons,
         type: StickerOpen.LaptopOpen,
         bgColor: '#fae2a5',
         textColor: '#000',
@@ -231,7 +218,6 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       },
       {
         name: 'Fighting Games',
-        component: FightingGames,
         type: StickerOpen.LaptopOpen,
         texture: 'stickers/streetfighter.png',
         bgColor: '#ff8200',
