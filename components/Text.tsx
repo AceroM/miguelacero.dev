@@ -11,7 +11,7 @@ const Text = styled('p', {
 })
 
 export const ThreeDLabel = styled(web.h1, {
-  ...tw`fixed`,
+  ...tw`fixed flex justify-center w-full`,
   top: '69%',
   left: '50%',
   transform: 'translate3d(-50%, 50%, 0)'

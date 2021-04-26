@@ -2,8 +2,9 @@ import {useSpring} from '@react-spring/core'
 import {a as three} from '@react-spring/three'
 import {a as web} from '@react-spring/web'
 import {Environment} from '@react-three/drei'
-import {Canvas, useThree} from '@react-three/fiber'
-import {Suspense} from 'react'
+import {Canvas} from '@react-three/fiber'
+import {Suspense, useEffect} from 'react'
+import {useHotkeys} from 'react-hotkeys-hook'
 import Laptop from '../components/3D/Laptop'
 import Header from '../components/Header'
 import {ThreeDLabel} from '../components/Text'
@@ -18,7 +19,7 @@ const Model = ({open}) => {
         color={open.to([0, 1], ['#f0f0f0', '#d25578'])}
       />
       <Suspense fallback={null}>
-        <group position={[0,-1,0]} rotation={[0, Math.PI, 0]}>
+        <group position={[0, -1, 0]} rotation={[0, Math.PI, 0]}>
           <Laptop/>
         </group>
         <Environment preset="city"/>
@@ -28,8 +29,25 @@ const Model = ({open}) => {
 }
 
 const Home = () => {
-  const {laptopOpen, selectedSticker} = useStore(state => state)
+  const {
+    laptopOpen,
+    closeLaptop,
+    selectedSticker,
+    addStickerToScreen,
+    stickers,
+    handleArrowKeyPress,
+    setSticker
+  } = useStore(state => state)
   const {open} = useSpring({open: Number(laptopOpen)})
+  useHotkeys('up', () => handleArrowKeyPress('up'))
+  useHotkeys('right', () => handleArrowKeyPress('right'))
+  useHotkeys('down', () => handleArrowKeyPress('down'))
+  useHotkeys('left', () => handleArrowKeyPress('left'))
+  useHotkeys('enter', () => addStickerToScreen())
+  useHotkeys('escape', () => closeLaptop())
+  useEffect(() => {
+    setSticker(stickers[0])
+  }, [])
 
   return (
     <web.main style={{background: open.to([0, 1], ['#f0f0f0', selectedSticker?.bgColor || '#d25578'])}}>

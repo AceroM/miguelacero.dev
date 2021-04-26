@@ -11,13 +11,14 @@ type Store = {
   openLaptop: () => void;
   closeLaptop: () => void;
   openStickers: StickerType[] | null;
-  addStickerToScreen: (sticker: StickerType) => void;
+  addStickerToScreen: (sticker?: StickerType) => void;
   removeStickerFromScreen: (sticker: StickerType) => void;
   getWindowPos: (sticker: StickerType) => [number, number, number];
   setWindowPos: (sticker: StickerType, x: number, y: number) => void;
   selectedSticker: StickerType | null; // Used to change the background color
   getThemeFromSticker: (texture?: string) => themeStyleType;
   setSticker: (sticker: StickerType) => void;
+  handleArrowKeyPress: (direction: string) => void;
   stickers: StickerType[];
 }
 
@@ -31,13 +32,22 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
     openLaptop: () => set(state => ({laptopOpen: true})),
     closeLaptop: () => set(state => ({laptopOpen: false})),
     openStickers: [],
-    addStickerToScreen: (sticker) => {
+    addStickerToScreen: (s) => {
+      let sticker
+      if (!s) {
+        sticker = get().selectedSticker
+      } else {
+        sticker = s
+      }
       if (sticker.type === StickerOpen.LaptopOpen) {
         let newStickers = get().openStickers
         const foundIdx = newStickers.findIndex(s => s.texture === sticker.texture)
         if (foundIdx === -1) {
           set({openStickers: [...get().openStickers, sticker]})
         }
+        get().openLaptop()
+      } else if (sticker.type === StickerOpen.OpenLink) {
+        window.open(sticker.href)
       }
     },
     removeStickerFromScreen: (sticker) => {
@@ -88,6 +98,15 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
       return theme
     },
     setSticker: (sticker) => set({selectedSticker: sticker}),
+    handleArrowKeyPress: (direction: string) => {
+      const {arrowKeys} = get().selectedSticker
+      if (arrowKeys[direction]) {
+        const foundSticker = get().stickers.find(s => s.texture === arrowKeys[direction])
+        if (foundSticker) {
+          set({selectedSticker: foundSticker})
+        }
+      }
+    },
     stickers: [
       {
         name: 'Vim',
@@ -98,6 +117,10 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         rotation: -.25,
         x: 3.7,
         y: .9,
+        arrowKeys: {
+          down: 'stickers/JS.png',
+          left: 'stickers/github.png',
+        },
         window: {
           x: 0,
           y: 0,
@@ -117,6 +140,11 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         rotation: 0,
         x: 3.4,
         y: 1.9,
+        arrowKeys: {
+          up: 'stickers/vim.png',
+          down: 'stickers/streetfighter.png',
+          left: 'stickers/github.png',
+        },
         window: {
           x: 0,
           y: 0,
@@ -136,6 +164,10 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         rotation: 0,
         x: -2.7,
         y: 5.3,
+        arrowKeys: {
+          up: 'stickers/hackathons.png',
+          right: 'stickers/mk.png',
+        },
         window: {
           x: 0,
           y: 0,
@@ -155,6 +187,10 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         rotation: -0.1,
         x: -1.3,
         y: 1,
+        arrowKeys: {
+          left: 'stickers/hackathons.png',
+          right: 'stickers/github.png',
+        },
         window: {
           x: 0,
           y: 0,
@@ -174,6 +210,10 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         rotation: .4,
         x: 2.8,
         y: 5,
+        arrowKeys: {
+          up: 'stickers/streetfighter.png',
+          left: 'stickers/hunter.png',
+        },
         window: {
           x: 0,
           y: 0,
@@ -193,6 +233,10 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         rotation: -0.12,
         x: -3.2,
         y: 1.23,
+        arrowKeys: {
+          right: 'stickers/google.png',
+          down: 'stickers/hunter.png',
+        },
         window: {
           x: 0,
           y: 0,
@@ -211,6 +255,11 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         rotation: 0.12,
         x: 2.4,
         y: 1,
+        arrowKeys: {
+          right: 'stickers/vim.png',
+          down: 'stickers/JS.png',
+          left: 'stickers/google.png',
+        },
         window: {
           x: 0,
           y: 0,
@@ -230,6 +279,10 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         rotation: 0.2,
         x: 3.35,
         y: 3.5,
+        arrowKeys: {
+          up: 'stickers/JS.png',
+          down: 'stickers/mk.png',
+        },
         window: {
           x: 0,
           y: 0,

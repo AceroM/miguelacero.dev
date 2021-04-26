@@ -1,5 +1,4 @@
 import {a as three} from '@react-spring/three'
-import {Html} from '@react-three/drei'
 import {useLoader} from '@react-three/fiber'
 import {useEffect, useState} from 'react'
 import * as THREE from 'three'
@@ -18,6 +17,13 @@ export type WindowInfo = {
   left: number;
 }
 
+export type ArrowKeys = {
+  up?: string;
+  right?: string;
+  down?: string;
+  left?: string;
+}
+
 export type StickerType = {
   name: string;
   type: StickerOpen;
@@ -29,6 +35,7 @@ export type StickerType = {
   rotation: number;
   x: number;
   y: number;
+  arrowKeys: ArrowKeys;
   window: WindowInfo;
 }
 
@@ -105,14 +112,6 @@ const Sticker = ({sticker}: StickerProps) => {
         onClick={e => {
           e.stopPropagation()
           addStickerToScreen(sticker)
-          switch (type) {
-            case StickerOpen.LaptopOpen:
-              openLaptop()
-              break
-            case StickerOpen.OpenLink:
-              window.open(href)
-              break
-          }
         }}
       >
         <planeBufferGeometry args={size}/>
