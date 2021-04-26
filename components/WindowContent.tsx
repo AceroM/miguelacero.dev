@@ -4,11 +4,14 @@ import useStore from '../store'
 
 const Container = styled('div', {
   ...tw`flex flex-col items-center overflow-auto`,
-  '@initial': {
-    h2: {
-      backgroundColor: 'red',
+  h1: {
+    variants: {
+      'boba': {
+        backgroundColor: 'black'
+      }
     }
   }
+
 })
 
 const WindowContent = ({scrollColor, height = 400, children}) => {

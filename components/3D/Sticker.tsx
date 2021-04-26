@@ -1,11 +1,11 @@
-import {a as three} from "@react-spring/three"
-import {Html} from "@react-three/drei"
-import {useLoader} from "@react-three/fiber"
-import {ReactElement, useEffect, useState} from 'react'
+import {a as three} from '@react-spring/three'
+import {Html} from '@react-three/drei'
+import {useLoader} from '@react-three/fiber'
+import {useEffect, useState} from 'react'
 import * as THREE from 'three'
-import tw from "twin.macro"
-import {styled} from "../../stitches.config"
-import useStore from "../../store"
+import tw from 'twin.macro'
+import {styled} from '../../stitches.config'
+import useStore from '../../store'
 
 export type WindowInfo = {
   // position on screen
@@ -36,7 +36,6 @@ export type StickerType = {
 export enum StickerOpen {
   LaptopOpen,
   OpenLink,
-  Nothing,
 }
 
 const StickerTitle = styled('h2', {
@@ -82,8 +81,10 @@ interface StickerProps {
 const Sticker = ({sticker}: StickerProps) => {
   const {name, type, href, texture, size, x, y, rotation} = sticker
   const textureRaw = useLoader(THREE.TextureLoader, texture)
+  const textureSelectedRaw = useLoader(THREE.TextureLoader, `${texture.slice(0, -4)}_selected.png`)
   const {laptopOpen, openLaptop, setSticker, selectedSticker, addStickerToScreen} = useStore(state => state)
   const [hovered, setHovered] = useState(false)
+  const selected = selectedSticker?.texture === sticker.texture
 
   useEffect(() => void (document.body.style.cursor = hovered ? 'pointer' : 'auto'), [hovered])
   return (
@@ -114,18 +115,8 @@ const Sticker = ({sticker}: StickerProps) => {
           }
         }}
       >
-        {!laptopOpen && selectedSticker?.texture === sticker.texture && (
-          <>
-            {size && (
-              <Reticle size={size}/>
-            )}
-            <Html>
-              <StickerTitle>{name}</StickerTitle>
-            </Html>
-          </>
-        )}
         <planeBufferGeometry args={size}/>
-        <meshLambertMaterial transparent={true} map={textureRaw}/>
+        <meshLambertMaterial transparent={true} map={selected ? textureSelectedRaw : textureRaw}/>
       </three.mesh>
     </>
   )

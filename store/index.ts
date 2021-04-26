@@ -21,6 +21,10 @@ type Store = {
   stickers: StickerType[];
 }
 
+function scaleImg(x: number, y: number, s: number): [number, number] {
+  return [x * s, y * s]
+}
+
 const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
   return {
     laptopOpen: false,
@@ -112,7 +116,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         size: [0.9, 0.9],
         rotation: 0,
         x: 3.4,
-        y: 2.3,
+        y: 1.9,
         window: {
           x: 0,
           y: 0,
@@ -128,7 +132,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         bgColor: '#5f259f',
         textColor: '#fff',
         texture: 'stickers/hunter.png',
-        size: [3, 1],
+        size: scaleImg(2088, 762, 0.0015),
         rotation: 0,
         x: -2.7,
         y: 5.3,
@@ -149,7 +153,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         texture: 'stickers/google.png',
         size: [1.6, 1.6],
         rotation: -0.1,
-        x: -0.3,
+        x: -1.3,
         y: 1,
         window: {
           x: 0,
@@ -166,9 +170,9 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         bgColor: '#fec8cd',
         textColor: '#a30000',
         texture: 'stickers/mk.png',
-        size: [2.36, 1.49],
+        size: scaleImg(532, 352, 0.005),
         rotation: .4,
-        x: 3,
+        x: 2.8,
         y: 5,
         window: {
           x: 0,
@@ -180,15 +184,15 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         },
       },
       {
-        name: 'HackNYU',
+        name: 'Hackathons',
         type: StickerOpen.LaptopOpen,
-        bgColor: '#fae2a5',
+        bgColor: '#fed330',
         textColor: '#000',
-        texture: 'stickers/hacknyucat.png',
-        size: [7.04 * 0.24, 4.59 * 0.24],
+        texture: 'stickers/hackathons.png',
+        size: [2, 2],
         rotation: -0.12,
-        x: -3,
-        y: 3.03,
+        x: -3.2,
+        y: 1.23,
         window: {
           x: 0,
           y: 0,
@@ -222,10 +226,10 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         texture: 'stickers/streetfighter.png',
         bgColor: '#ff8200',
         textColor: '#000',
-        size: [633*0.005,236*0.005],
+        size: scaleImg(673, 319, 0.003),
         rotation: 0.2,
-        x: 0.35,
-        y: 5,
+        x: 3.35,
+        y: 3.5,
         window: {
           x: 0,
           y: 0,

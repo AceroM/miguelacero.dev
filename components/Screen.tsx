@@ -1,12 +1,12 @@
 import useStore from '../store'
 import DraggableWindow from './DraggableWindow'
-import Hunter from '../pages/stickers/hunter.mdx'
-import Vim from '../pages/stickers/vim.mdx'
-import WorkExperience from '../pages/stickers/workexperience.mdx'
-import FightingGames from '../pages/stickers/fightinggames.mdx'
-import Skills from '../pages/stickers/skills.mdx'
-import Keyboards from '../pages/stickers/keyboards.mdx'
-import Hackathons from '../pages/stickers/hackathons.mdx'
+import Hunter from './stickers/hunter.mdx'
+import Vim from './stickers/vim.mdx'
+import WorkExperience from './stickers/workexperience.mdx'
+import FightingGames from './stickers/fightinggames.mdx'
+import Skills from './stickers/skills.mdx'
+import Keyboards from './stickers/keyboards.mdx'
+import Hackathons from './stickers/hackathons.mdx'
 
 const Screen = ({sticker}) => {
   const {laptopOpen} = useStore(state => state)
@@ -27,7 +27,7 @@ const Screen = ({sticker}) => {
     case 'stickers/google.png':
       component = <WorkExperience />
       break
-    case 'stickers/hacknyucat.png':
+    case 'stickers/hackathons.png':
       component = <Hackathons />
       break
     case 'stickers/streetfighter.png':

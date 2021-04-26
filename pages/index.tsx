@@ -6,12 +6,10 @@ import {Canvas, useThree} from '@react-three/fiber'
 import {Suspense} from 'react'
 import Laptop from '../components/3D/Laptop'
 import Header from '../components/Header'
+import {ThreeDLabel} from '../components/Text'
 import useStore from '../store'
 
 const Model = ({open}) => {
-  // const {viewport} = useThree()
-  // const isMobile = viewport.getCurrentViewport().width < 21
-
   return (
     <>
       <three.pointLight
@@ -35,7 +33,7 @@ const Home = () => {
 
   return (
     <web.main style={{background: open.to([0, 1], ['#f0f0f0', selectedSticker?.bgColor || '#d25578'])}}>
-      {/*<Intro/>*/}
+      <ThreeDLabel>{selectedSticker?.name}</ThreeDLabel>
       <Header title="Home"/>
       <Canvas dpr={[1, 2]} camera={{position: [0, 0, 0], fov: 25}}>
         <Model open={open}/>

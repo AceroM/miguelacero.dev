@@ -4,6 +4,7 @@ I finally made a portfolio website
 This Project was made using this template: https://github.com/ben-rogerson/twin.examples/tree/master/next-stitches-typescript
 
 ## TODO
+* Have something always selected (make selected glow only one color?)
 * Write all the screen content using mdx?
 * use glassmorphism?
 * create drag and drop feature (only maximize and close window, no custom window size)
