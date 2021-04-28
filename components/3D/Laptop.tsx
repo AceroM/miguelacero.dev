@@ -7,7 +7,7 @@ import * as THREE from 'three'
 import tw from 'twin.macro'
 import {styled} from '../../stitches.config'
 import useStore from '../../store'
-import Screen from '../Screens'
+import Screen from '../Screen'
 import Sticker from './Sticker'
 
 const vec = new THREE.Vector3()
@@ -35,7 +35,7 @@ const getLaptopPos = (cur: Number, t, status: boolean, type: string, value: stri
       },
       position: {
         x: -0.6,
-        y: 4,
+        y: 4.6,
         z: 9,
       },
     }
@@ -77,11 +77,6 @@ const Laptop = () => {
   const group = useRef<THREE.group>(null)
 
   // Only show the cursor throughout the laptop if opened.
-  useEffect(() => {
-    if (laptopOpen) {
-      document.body.style.cursor = hovered ? 'pointer' : 'auto'
-    }
-  }, [hovered, laptopOpen])
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
     state.camera.position.lerp(vec.set(0, 0, laptopOpen ? -24 : -32), 0.1)
@@ -130,7 +125,7 @@ const Laptop = () => {
           <three.mesh>
             <planeBufferGeometry args={[8.25, 5.17, 2]}/>
             <meshLambertMaterial map={textureRaw}/>
-            <BackButton/>
+            {/*<BackButton/>*/}
             {screenList}
           </three.mesh>
         </three.group>

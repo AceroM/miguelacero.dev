@@ -11,6 +11,7 @@ const globalStyles = global({
     margin: '0',
     padding: '0'
   },
+  "td, th": { border: "1px solid #dddddd", textAlign: "left", padding: "8px" },
   body: {fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif;', color: 'black', background: '#f0f0f0'},
 })
 

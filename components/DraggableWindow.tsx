@@ -1,21 +1,11 @@
 import {a as three} from '@react-spring/three'
 import {Html} from '@react-three/drei'
-import {useLoader, useThree} from '@react-three/fiber'
-import {useRef, useState} from 'react'
+import {useThree} from '@react-three/fiber'
+import {useRef} from 'react'
 import {useDrag} from 'react-use-gesture'
-import * as THREE from 'three'
 import tw, {theme} from 'twin.macro'
-import {log} from 'util'
-import {styled} from '../../stitches.config'
-import useStore from '../../store'
-import Animoto from './animoto'
-import Chase from './chase'
-import FightingGames from './fightinggames'
-import Google from './google'
-import HackNYU from './hacknyu'
-import Hunter from './hunter'
-import Keyboards from './keyboards'
-import Skills from './skills'
+import {styled} from '../stitches.config'
+import useStore from '../store'
 
 const Container = styled('div', {
   ...tw`bg-white overflow-hidden rounded-md p-0 shadow-md`,
@@ -130,47 +120,4 @@ const DraggableWindow = ({laptopOpen, children, sticker}) => {
   )
 }
 
-const Index = ({sticker}) => {
-  const {laptopOpen} = useStore(state => state)
-  let component
-  switch (sticker.texture) {
-    case 'stickers/hacknyucat.png':
-      component = <HackNYU/>
-      break
-    case 'stickers/hunter.png':
-      component = <Hunter/>
-      break
-    case 'stickers/mk.png':
-      component = <Keyboards/>
-      break
-    case 'stickers/JS.png':
-      component = <Skills/>
-      break
-    case 'stickers/google.png':
-      component = <Google/>
-      break
-    case 'stickers/chase.png':
-      component = <Chase/>
-      break
-    case 'stickers/animoto.png':
-      component = <Animoto/>
-      break
-    case 'stickers/streetfighter.png':
-      component = <FightingGames/>
-      break
-    default:
-      component = <></>
-  }
-  const isMobile = window.innerWidth < 1024
-
-  return (
-    <DraggableWindow
-      laptopOpen={laptopOpen}
-      sticker={sticker}
-    >
-      {component}
-    </DraggableWindow>
-  )
-}
-
-export default Index
+export default DraggableWindow
