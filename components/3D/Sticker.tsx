@@ -1,6 +1,7 @@
 import {a as three} from '@react-spring/three'
 import {useLoader} from '@react-three/fiber'
-import {useEffect, useState} from 'react'
+import {Bloom, EffectComposer} from '@react-three/postprocessing'
+import {Suspense, useEffect, useState} from 'react'
 import * as THREE from 'three'
 import tw from 'twin.macro'
 import {styled} from '../../stitches.config'

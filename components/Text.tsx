@@ -22,4 +22,8 @@ export const WordArt = styled('p', {
   fontFamily: 'Arial',
 })
 
+export const Marquee = () => {
+
+}
+
 export default Text

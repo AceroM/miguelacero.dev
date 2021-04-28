@@ -77,11 +77,6 @@ const Laptop = () => {
   const group = useRef<THREE.group>(null)
 
   // Only show the cursor throughout the laptop if opened.
-  useEffect(() => {
-    if (laptopOpen) {
-      document.body.style.cursor = hovered ? 'pointer' : 'auto'
-    }
-  }, [hovered, laptopOpen])
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
     state.camera.position.lerp(vec.set(0, 0, laptopOpen ? -24 : -32), 0.1)
@@ -130,7 +125,7 @@ const Laptop = () => {
           <three.mesh>
             <planeBufferGeometry args={[8.25, 5.17, 2]}/>
             <meshLambertMaterial map={textureRaw}/>
-            <BackButton/>
+            {/*<BackButton/>*/}
             {screenList}
           </three.mesh>
         </three.group>

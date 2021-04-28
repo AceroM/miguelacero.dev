@@ -109,6 +109,30 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
     },
     stickers: [
       {
+        name: 'Me',
+        type: StickerOpen.LaptopOpen,
+        texture: 'stickers/miguel.png',
+        bgColor: '#232946',
+        textColor: '#b8c1ec',
+        size: scaleImg(2088, 1716, 0.0009),
+        rotation: 0,
+        x: 0,
+        y: 3.1,
+        arrowKeys: {
+          up: 'stickers/google.png',
+          right: 'stickers/streetfighter.png',
+          down: 'stickers/mk.png',
+        },
+        window: {
+          x: 0,
+          y: 0,
+          top: -100,
+          right: 100,
+          bottom: 100,
+          left: -100,
+        },
+      },
+      {
         name: 'Vim',
         type: StickerOpen.OpenLink,
         href: 'https://gist.github.com/AceroM/64dd2e89c3f5d834f6ee74c66551bace',
@@ -190,6 +214,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         arrowKeys: {
           left: 'stickers/hackathons.png',
           right: 'stickers/github.png',
+          down: 'stickers/miguel.png',
         },
         window: {
           x: 0,
@@ -281,6 +306,7 @@ const useStore = create<Store>((set: SetState<Store>, get: GetState<Store>) => {
         y: 3.5,
         arrowKeys: {
           up: 'stickers/JS.png',
+          left: 'stickers/miguel.png',
           down: 'stickers/mk.png',
         },
         window: {
