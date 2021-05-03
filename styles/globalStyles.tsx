@@ -5,7 +5,7 @@ const globalStyles = global({
   ':root': {MozTabSize: '4', tabSize: 4},
   a: {color: 'inherit', textDecoration: 'inherit'},
   'html, body, main, #__next': {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#F4F4F4',
     width: '100%',
     height: '100%',
     margin: '0',

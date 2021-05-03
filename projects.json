@@ -1,0 +1,124 @@
+[
+  {
+    "id": "0",
+    "name": "miguelacero.dev",
+    "description": "WIP Portfolio website",
+    "category": "Personal Project",
+    "technologies": [
+      {
+        "name": "Next.js",
+        "color": "gray"
+      },
+      {
+        "name": "Tailwind",
+        "color": "green"
+      },
+      {
+        "name": "Three.js",
+        "color": "pink"
+      },
+      {
+        "name": "MDX",
+        "color": "yellow"
+      }
+    ],
+    "viewHref": "https://miguelacero.dev",
+    "srcHref": "https://github.com/AceroM/miguelacero.dev",
+    "imgHref": "/images/miguelacerodev.png"
+  },
+  {
+    "id": "1",
+    "name": "Hunter Codefest",
+    "description": "Website for annual hackathon",
+    "category": "College Project",
+    "technologies": [
+      {
+        "name": "Gatsby.js",
+        "color": "purple"
+      }
+    ],
+    "viewHref": "https://codefest.huntercs.org/",
+    "srcHref": "https://github.com/huntercodefest/huntercodefest.github.io",
+    "imgHref": "/images/codefest.png"
+  },
+  {
+    "id": "2",
+    "name": "Stateastics",
+    "description": "Project for data visualizations class",
+    "category": "College Project",
+    "technologies": [
+      {
+        "name": "React",
+        "color": "blue"
+      },
+      {
+        "name": "Turf.js",
+        "color": "green"
+      },
+      {
+        "name": "OpenStreetMap",
+        "color": "orange"
+      }
+    ],
+    "srcHref": "https://github.com/huntercodefest/huntercodefest.github.io",
+    "imgHref": "/images/stateastics_2.png"
+  },
+  {
+    "id": "3",
+    "name": "Spotification",
+    "description": "Spotify visualization app for Practical Web Development class",
+    "category": "College Project",
+    "technologies": [
+      {
+        "name": "React",
+        "color": "blue"
+      },
+      {
+        "name": "Spotify API",
+        "color": "green"
+      },
+      {
+        "name": "MongoDB",
+        "color": "green"
+      }
+    ],
+    "srcHref": "https://github.com/pacqu/Spotification",
+    "imgHref": "/images/spotification.png"
+  },
+  {
+    "id": "3",
+    "name": "Change",
+    "description": "HackNYU ‘20  1st Place in Sustainability. Acorns but for donations!",
+    "category": "Hackathon Project",
+    "technologies": [
+      {
+        "name": "React Native",
+        "color": "blue"
+      }
+    ],
+    "viewHref": "https://devpost.com/software/change-o9yabw",
+    "srcHref": "https://github.com/LeoAuyeung/Change",
+    "imgHref": "/images/change.jpg"
+  },
+  {
+    "id": "3",
+    "name": "Occupied",
+    "description": "Occupied is a web-based platform to help facilitate and control space reservation within a given establishment.",
+    "category": "College Project",
+    "technologies": [
+      {
+        "name": "React",
+        "color": "blue"
+      },
+      {
+        "name": "Sequelize",
+        "color": "purple"
+      },
+      {
+        "name": "MongoDB",
+        "color": "green"
+      }
+    ],
+    "srcHref": "https://github.com/f0cus10/Occupied"
+  }
+]

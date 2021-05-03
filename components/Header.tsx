@@ -13,8 +13,12 @@ const navItems = [
     href: '/blog',
   },
   {
-    name: 'About',
-    href: '/about',
+    name: 'Projects',
+    href: '/projects',
+  },
+  {
+    name: 'Source Code',
+    href: 'https://github.com/AceroM/miguelacero.dev',
   },
 ]
 
@@ -41,7 +45,7 @@ const Link = styled(web.a, {
   ...tw`font-medium text-base hover:text-black py-3 px-6`,
 })
 
-const NavLink = ({ href, name }) => {
+const NavLink = ({href, name}) => {
   const [hovered, setHovered] = useState(false)
   const isHome = useRouter().pathname === '/'
 
@@ -61,30 +65,32 @@ const NavLink = ({ href, name }) => {
   )
 }
 
-const Header = ({ title }) => {
+const Header = ({title}) => {
   const isHome = useRouter().pathname === '/'
   const {laptopOpen, selectedSticker} = useStore(state => state)
   const {open} = useSpring({open: Number(laptopOpen)})
   const navList = navItems.map(n => (
-    <NavLink href={n.href} name={n.name} key={n.name} />
+    <NavLink href={n.href} name={n.name} key={n.name}/>
   ))
   const colorChange = {color: open.to([0, 1], ['#1f2937', selectedSticker?.textColor || '#1f2937'])}
 
   return (
-    <Container isHome={isHome}>
+    <>
       {/*<Head>*/}
       {/*  <title>miguelacero.dev | {title}</title>*/}
       {/*</Head>*/}
-      <HeaderContainer style={colorChange}>
-        <Title onClick={() => location.href = '/'}>
-          miguelacero.dev
-        </Title>
-        {/* TODO: add fade in animations here */}
-        <Navbar style={colorChange}>
-          {navList}
-        </Navbar>
-      </HeaderContainer>
-    </Container>
+      <Container>
+        <HeaderContainer style={colorChange}>
+          <Title onClick={() => location.href = '/'}>
+            miguelacero.dev
+          </Title>
+          {/* TODO: add fade in animations here */}
+          <Navbar style={colorChange}>
+            {navList}
+          </Navbar>
+        </HeaderContainer>
+      </Container>
+    </>
   )
 }
 

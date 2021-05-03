@@ -35,7 +35,7 @@ const getLaptopPos = (cur: Number, t, status: boolean, type: string, value: stri
       },
       position: {
         x: -0.6,
-        y: 4.6,
+        y: 5.0,
         z: 9,
       },
     }

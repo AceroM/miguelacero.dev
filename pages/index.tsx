@@ -1,3 +1,4 @@
+import {Heading, Table, Tbody, Td, Th, Thead, Tr} from '@chakra-ui/react'
 import {useSpring} from '@react-spring/core'
 import {a as three} from '@react-spring/three'
 import {a as web} from '@react-spring/web'
@@ -5,11 +6,9 @@ import {Environment} from '@react-three/drei'
 import {Canvas} from '@react-three/fiber'
 import {Suspense, useEffect} from 'react'
 import {useHotkeys} from 'react-hotkeys-hook'
-import tw from 'twin.macro'
 import Laptop from '../components/3D/Laptop'
 import Header from '../components/Header'
 import {ThreeDLabel} from '../components/Text'
-import {styled} from '../stitches.config'
 import useStore from '../store'
 
 const Model = ({open}) => {
@@ -29,11 +28,6 @@ const Model = ({open}) => {
     </>
   )
 }
-
-const Instructions = styled('div', {
-  ...tw`absolute w-full h-full flex flex-col justify-center`,
-  width: '19%',
-})
 
 const Home = () => {
   const {
@@ -57,29 +51,35 @@ const Home = () => {
   }, [])
 
   return (
-    <web.main style={{background: open.to([0, 1], ['#f0f0f0', selectedSticker?.bgColor || '#d25578'])}}>
-      <ThreeDLabel>{selectedSticker?.name}</ThreeDLabel>
+    <web.main style={{background: open.to([0, 1], ['#F4F4F4', selectedSticker?.bgColor || '#d25578'])}}>
+      <ThreeDLabel>
+        <Heading mb={5}>
+          {selectedSticker?.name}
+        </Heading>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Command</Th>
+              <Th>Shortcut Key</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            <Tr>
+              <Td>Move Sticker Selection</Td>
+              <Td>(← ↑ → ↓)</Td>
+            </Tr>
+            <Tr>
+              <Td>Select Sticker</Td>
+              <Td>enter</Td>
+            </Tr>
+            <Tr>
+              <Td>Close Laptop</Td>
+              <Td>esc</Td>
+            </Tr>
+          </Tbody>
+        </Table>
+      </ThreeDLabel>
       <Header title="Home"/>
-      <Instructions>
-        <table style={{color: laptopOpen ? selectedSticker?.textColor : '#000'}}>
-          <tr>
-            <td>Command</td>
-            <td>Shortcut Key</td>
-          </tr>
-          <tr>
-            <td>Move Sticker Selection</td>
-            <td>(← ↑ → ↓)</td>
-          </tr>
-          <tr>
-            <td>Select Sticker</td>
-            <td>enter</td>
-          </tr>
-          <tr>
-            <td>Close Laptop</td>
-            <td>esc</td>
-          </tr>
-        </table>
-      </Instructions>
       <Canvas dpr={[1, 2]} camera={{position: [0, 0, 0], fov: 25}}>
         <Model open={open}/>
       </Canvas>

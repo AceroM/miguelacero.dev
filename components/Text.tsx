@@ -10,20 +10,12 @@ const Text = styled('p', {
   }
 })
 
-export const ThreeDLabel = styled(web.h1, {
-  ...tw`fixed flex justify-center w-full`,
-  top: '69%',
+export const ThreeDLabel = styled(web.div, {
+  ...tw`fixed flex flex-col justify-center w-full items-center`,
+  width: 600,
+  top: '53%',
   left: '50%',
-  transform: 'translate3d(-50%, 50%, 0)'
+  transform: 'translate3d(-50%, 50%, 0)',
 })
-
-export const WordArt = styled('p', {
-  ...tw``,
-  fontFamily: 'Arial',
-})
-
-export const Marquee = () => {
-
-}
 
 export default Text
